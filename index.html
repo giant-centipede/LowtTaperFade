@@ -21,6 +21,10 @@ var direction ="left"
 var headPos = [0,0]
 var length = 4;
 var dir = 0;    
+
+
+
+        
 function gg() {
     for (let y = 1; y < 7; y++) {
         for (let x = 1; x < 14; x++) {
@@ -51,7 +55,7 @@ function updateDisplay() {
     document.getElementById('boardDisplay').innerHTML = displayString;
 }
 function headPosition() {
-    for (let y = 1; y < 7; y++) {
+    for (let y = 1; y < 8; y++) {
         for (let x = 1; x < 14; x++) {
             if (board[y][x] == 2) {
                 headPos = [y,x];
@@ -120,8 +124,10 @@ function gameLoop() {
     move();
     
     updateDisplay();
-    if (gg == 91) {win();}
     
+    if (gg == 91) {win();}
+    const boardString = JSON.stringify(board);
+    localStorage.setItem('board',boardString);
     setTimeout(gameLoop, 200);
 }
 gameLoop();
