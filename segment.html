@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>snake test</title>
+    <h1 id='boardDisplay'>hi</h1>
+</head>
+<body>
+
+    <script>
+var board = [[-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
+             [-1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-1],
+             [-1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-1],
+             [-1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-1],
+             [-1,0,2,0,0,0,0,0,1,0,0,0,0,0,0,-1],
+             [-1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-1],
+             [-1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-1],
+             [-1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-1],
+             [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
+            ]
+
+window.addEventListener('storage', (event) => {
+    try {
+    if (event.key === 'board') {
+        const newBoard = JSON.parse(event.newValue);
+        board = newBoard;
+    }
+    } catch(e) {
+        console.error("L",e);
+    }
+});
+        
+function gameLoop() {
+    var displayString = "";
+    for (var i = 0; i < board.length; i++) {
+    displayString += board[i].join(' ') + "<br>";
+        }
+    document.getElementById('boardDisplay').innerHTML = displayString;
+    
+    
+    setTimeout(gameLoop, 200);
+}
+gameLoop();
+        
+    </script>
+
+</body>
+</html>
